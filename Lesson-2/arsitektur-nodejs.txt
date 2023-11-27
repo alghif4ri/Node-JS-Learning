@@ -1,0 +1,2 @@
+arsitektur node js 
+Asynchronous, non-blocking, single thread

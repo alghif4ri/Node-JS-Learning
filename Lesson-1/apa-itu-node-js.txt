@@ -1,0 +1,4 @@
+node js adalah javascript runtime
+apa itu runtime, dan bagaimana cara menggunakannya?
+runtime adalah sebuah tempat kita menjalan code
+javascript, sehingga kita dapat menjalankan program javascript di browser, server,ataupun di aplikasi mobile.
