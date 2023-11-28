@@ -1,0 +1,13 @@
+node module system
+- core modules : 
+
+
+- local modules :
+export and require
+    require mencari modul dengan urutan sebagai berikut :
+    -core modules
+    -file atau direktori (./ atau ../)
+    -folder 'node_modules'
+
+- third party modules :
+npm modules
