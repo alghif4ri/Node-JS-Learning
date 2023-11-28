@@ -1,0 +1,7 @@
+Node REPL
+Read Eval Print Loop
+=====================
+menulis langsung kode javascript langsung di bash terminal,
+tanpa harus membuat file baru.
+=====================
+
