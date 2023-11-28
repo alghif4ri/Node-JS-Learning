@@ -1,0 +1,1 @@
+Haii World dengan synchronous! diupdate dengan Asynchronous!
