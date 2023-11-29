@@ -1,10 +1,17 @@
-const validator = require('validator');
-const chalk = require('chalk')
+// const contacts = require('./contacts')
 
-// console.log(validator.isEmail('r.abudzar@gmail.co'));
-// console.log(validator.isMobilePhone('082299182673', 'id-ID'));
-// console.log(validator.isNumeric('082299182673'));
+// const main = async () => {
+//   const nama = await contacts.questions('Masukan Nama : ');
+//   const email = await contacts.questions('Masukan Email : ');
+//   const NoHP = await contacts.questions('Masukan No HP : ');
 
-// console.log(chalk.black.bgBlue.italic('hello blue!'));
-const pesan = chalk`Lorem ipsum dolor {bgBlue.black sit amet} consectetur adipisicing elit. {bgGreen.italic Excepturi, libero.}`;
-console.log(chalk.black(pesan))
+// bisa juga ditulis dengan object destructuring
+const {questions, saveContact} = require('./contacts')
+
+const main = async () => {
+  const nama = await questions('Masukan Nama : ');
+  const email = await questions('Masukan Email : ');
+  const NoHP = await questions('Masukan No HP : ');
+  saveContact(nama, email, NoHP);
+};
+main();  
