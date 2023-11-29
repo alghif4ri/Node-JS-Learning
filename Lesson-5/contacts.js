@@ -82,12 +82,16 @@ if (!fs.existsSync(fileName)) {
 //       });
 //     });
 //   };
-
-const saveContact = (nama, email, noHP) => {
-  const contact = { nama, email, noHP };
+const loadContact = () => {
   const file = fs.readFileSync(fileName, "utf8");
   const contacts = JSON.parse(file);
-
+  return contacts;
+};
+const saveContact = (nama, email, noHP) => {
+  const contact = { nama, email, noHP };
+  //   const file = fs.readFileSync(fileName, "utf8");
+  //   const contacts = JSON.parse(file);
+  const contacts = loadContact();
   // cek duplikat
   const duplikat = contacts.find((contact) => contact.nama === nama);
   if (duplikat) {
@@ -127,4 +131,46 @@ const saveContact = (nama, email, noHP) => {
   //   rl.close();
 };
 
-module.exports = { saveContact };
+const listContact = () => {
+  const contacts = loadContact();
+  console.log(chalk.yellow.bold.inverse("Contact List : "));
+  contacts.forEach((contact, i) => {
+    console.log(`${i + 1}. ${contact.nama} - ${contact.noHP}`);
+  });
+};
+
+const detailContact = (nama) => {
+  const contacts = loadContact();
+
+  const contact = contacts.find(
+    (contact) => contact.nama.toLowerCase() === nama.toLowerCase()
+  );
+
+  if (!contact) {
+    console.log(chalk.red.inverse.bold(`${nama} tidak ditemukan!`));
+    return false;
+  }
+
+  console.log(chalk.cyan.bold.inverse(contact.nama));
+  if (contact.email) {
+    console.log(chalk.magenta.bold(contact.email));
+  }
+  console.log(chalk.red(contact.noHP));
+};
+
+const deleteContact = (nama) => {
+  const contacts = loadContact();
+  const newContacts = contacts.filter(
+    (contact) => contact.nama.toLowerCase() !== nama.toLowerCase()
+  );
+  if (contacts.length === newContacts.length){
+    console.log(chalk.red.inverse.bold(`${nama} tidak ditemukan!`));
+    return false;
+  }
+  fs.writeFile(fileName, JSON.stringify(newContacts), (err) => {
+    console.log(err);
+  });
+  console.log(`Contact ${nama} berhasil dihapus!`);
+};
+
+module.exports = { saveContact, listContact, detailContact, deleteContact };

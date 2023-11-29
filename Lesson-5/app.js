@@ -50,6 +50,48 @@ yargs.command({
     // console.log(contact);
     contacts.saveContact(argv.nama, argv.email, argv.noHP)
 },
-});
+}).demandCommand(); // jika tidak argumen, tampilkan pesan
+
+//Tampilakan daftar contact nama dan nomor HP
+
+yargs.command({
+    command: "list",
+    describe: "Menampilkan semua contact nama & nomor HP",
+    handler(){
+        contacts.listContact();
+    }
+})
+
+// Tampilkan detail sebuah contact
+yargs.command({
+    command: "detail",
+    describe: "Menampilkan detail sebuah contact berdasarkan nama",
+    builder:{
+        nama :{
+        describe:'contact detail',
+        demandOption:true,
+        type: 'string'
+        },
+    },
+    handler(argv){
+        contacts.detailContact(argv.nama);
+    }
+})
+
+//Menghapus contact berdasarkan nama
+yargs.command({
+  command: "delete",
+  describe: "Menghapus sebuah contact berdasarkan nama",
+  builder:{
+      nama :{
+      describe:'contact detail',
+      demandOption:true,
+      type: 'string'
+      },
+  },
+  handler(argv){
+      contacts.deleteContact(argv.nama);
+  }
+})
 
 yargs.parse();
