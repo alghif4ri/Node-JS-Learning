@@ -1,11 +1,13 @@
 const fs = require("fs");
 const { resolve } = require("path");
-const readline = require("readline");
+const chalk = require("chalk");
+const validator = require("validator");
+// const readline = require("readline");
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+// const rl = readline.createInterface({
+//   input: process.stdin,
+//   output: process.stdout,
+// });
 
 const dirPath = "./data";
 // Mengecek apakah folder sudah ada atau belum
@@ -20,8 +22,6 @@ if (!fs.existsSync(fileName)) {
   // Jika file belum ada, buat file tersebut
   fs.writeFileSync(fileName, "[]", "utf8");
 }
-
-
 
 // synchronous
 // rl.question(`Masukan Nama Anda : `, (nama) => {
@@ -75,31 +75,56 @@ if (!fs.existsSync(fileName)) {
 //     const NoHP = await quest3();
 
 // Refactor dijadikan satu penampung pertanyaan
-const questions = (question) => {
-    return new Promise((resolve, reject) => {
-      rl.question(question, (answer) => {
-        resolve(answer);
-      });
-    });
-  };
+// const questions = (question) => {
+//     return new Promise((resolve, reject) => {
+//       rl.question(question, (answer) => {
+//         resolve(answer);
+//       });
+//     });
+//   };
 
-  const saveContact = (nama, email, NoHP) => {
+const saveContact = (nama, email, noHP) => {
+  const contact = { nama, email, noHP };
+  const file = fs.readFileSync(fileName, "utf8");
+  const contacts = JSON.parse(file);
 
-  if (!isNaN(NoHP)) {
-    const contact = { nama, email, NoHP };
-    const file = fs.readFileSync(fileName, "utf8");
-    const contacts = JSON.parse(file);
-    // console.log(contacts)
-    contacts.push(contact);
-
-    fs.writeFile(fileName, JSON.stringify(contacts), (err) => {
-      console.log(err);
-    });
-    console.log(`Terimakasih, ${nama} !`);
-  } else {
-    console.log(`Hanya Inputkan angka untuk Nomor HP, Ulangi kembali!`);
-  }
-  rl.close();
+  // cek duplikat
+  const duplikat = contacts.find((contact) => contact.nama === nama);
+  if (duplikat) {
+    console.log(
+      chalk.red.inverse.bold("Nama sudah terdaftar, gunakan nama lain!")
+    );
+    return false;
   }
 
-  module.exports = { questions, saveContact}
+  //cek email
+  if (email) {
+    if (!validator.isEmail(email)) {
+      console.log(chalk.red.inverse.bold("email tidak valid!"));
+      return false;
+    }
+    const duplikatEmail = contacts.find((contact) => contact.email === email);
+    if (duplikatEmail) {
+      console.log(
+        chalk.red.inverse.bold("Email sudah terdaftar, gunakan email lain!")
+      );
+      return false;
+    }
+  }
+
+  // cek nomor hp
+  if (!validator.isMobilePhone(noHP, "id-ID")) {
+    console.log(chalk.red.inverse.bold("Nomor HP tidak valid!"));
+    return false;
+  }
+
+  contacts.push(contact);
+
+  fs.writeFile(fileName, JSON.stringify(contacts), (err) => {
+    console.log(err);
+  });
+  console.log(`Terimakasih, ${nama} !`);
+  //   rl.close();
+};
+
+module.exports = { saveContact };
