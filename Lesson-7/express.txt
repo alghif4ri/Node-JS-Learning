@@ -1,0 +1,14 @@
+apa itu expressJS?
+expressJS adalah framework web yang dikembangkan oleh TJ Holowaychuk dan terinspirasi oleh Ruby on Rails. ExpressJS memiliki beberapa fitur-fitur penting, seperti routing, middleware, dan templating engine.
+expressJS menyediakan antarmuka yang minimal untuk kakas yang diperlukan dalam membuat sebuah aplikasi web.
+membantu pengelolaan aliran data dari server ke aplikasi
+Tech Stack : MERN, MEAN, MEVN
+
+fitur expressJS.
+menangani request dengan berbagai metode HTTP dengan mudah (Routes)
+MVC
+terintegrasi dengan 'view' rendering engine, untuk mengelola template.
+middleware
+
+request : apa yang dikirimkan ke expressJS
+response : apa yang dikembalikan oleh expressJS
