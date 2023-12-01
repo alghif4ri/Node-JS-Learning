@@ -12,3 +12,7 @@ middleware
 
 request : apa yang dikirimkan ke expressJS
 response : apa yang dikembalikan oleh expressJS
+
+Templating Engine
+- EJS (Embedded JavaScript Template)
+Simple syntax, simple setup, speedy execution, easy debugging, active development, dibuat oleh pembuat expressJS 
