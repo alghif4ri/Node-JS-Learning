@@ -1,0 +1,18 @@
+Express Middleware
+apa itu Middleware?
+Middleware adalah sebuah komponen yang dapat mempengaruhi kedua-dua hal,
+yaitu request dan response. Middleware digunakan untuk mengatur atau
+memblok beberapa tindakan pada suatu aplikasi web. Middleware biasanya
+dibuat dengan tujuan untuk meningkatkan keamanan, performansi, atau
+fitur lainnya dalam suatu aplikasi web. Middleware bisa berfungsi
+sebagai filter yang membantu mencegah akses tidak sah atau melakukan
+validasi data yang masuk ke aplikasi. Middleware juga dapat dijadwalkan
+untuk dilakukan setelah proses selesai pada suatu aplikasi.
+
+user-defined Middleware
+    application level Middleware
+    router level Middleware
+    error handling Middleware
+
+built-in Middleware
+thirdparty Middleware
