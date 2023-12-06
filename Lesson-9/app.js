@@ -1,7 +1,15 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const { loadContact, findContact } = require("./Utils/contacts.js");
-
+const {
+  loadContact,
+  findContact,
+  addContact,
+  cekDuplikat,
+} = require("./Utils/contacts.js");
+const { body, validationResult, check } = require("express-validator");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
+const flash = require("connect-flash");
 const app = express();
 const port = 3000;
 
@@ -10,7 +18,18 @@ app.use(expressLayouts); // Third-Party middleware
 
 // built-in middleware
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 
+app.use(cookieParser("secret"));
+app.use(
+  session({
+    cookie: { maxAge: 6000 },
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
 app.get("/", (req, res) => {
   const mahasiswa = [
     {
@@ -47,9 +66,45 @@ app.get("/contact", (req, res) => {
     title: "Contact Page",
     layout: "layouts/main-layouts",
     contacts,
+    success_msg: req.flash('success_msg')
   });
 });
 
+app.get("/contact/add", (req, res) => {
+  res.render("add-contact", {
+    title: "Form add contact",
+    layout: "layouts/main-layouts",
+  });
+});
+
+app.post(
+  "/contact",
+  [
+    body("nama").custom((value) => {
+      const duplikat = cekDuplikat(value);
+      if (duplikat) {
+        throw new Error("Nama sudah ada");
+      }
+      return true;
+    }),
+    check("email", "email tidak valid").isEmail(),
+    check("noHP", "No HP tidak valid").isMobilePhone("id-ID"),
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render("add-contact", {
+        title: "Form add contact",
+        layout: "layouts/main-layouts",
+        errors: errors.array(),
+      });
+    } else {
+      addContact(req.body);
+      req.flash("success_msg", "Data berhasil di tambahkan!");
+      res.redirect("/contact");
+    }
+  }
+);
 
 app.get("/contact/:nama", (req, res) => {
   const contact = findContact(req.params.nama);
