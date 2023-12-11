@@ -1,0 +1,124 @@
+MongoDB adalah sebuah database berbasis dokumen yang memiliki skalabilitas dan flesibilitas yang kita inginkan dan juga memiliki fitur query dan indexing yang kita butuhkan.
+
+apa itu database berbasis dokumen?
+Database berbasis dokumen adalah salah satu jenis database yang memiliki struktur data yang terstruktur dan 
+dokumentasi. Database ini dapat dibilang sebagai media penyimpanan untuk informasi yang tid
+ak perlu disusun secara linear atau hierarkis, tetapi lebih mudah digunakan oleh p
+engguna karena mendukung kemampuan mencari data dengan cara melalui isian teks dan k
+eterkaitannya. Dalam bahasa Inggris, termasuk "document-oriented" dan "NoSQL".
+apa tujuan database berbasis dokumen?
+Tujuan database berbasis dokumen adalah untuk membantu pengelolaan data yang kompleks dan
+tidak terstruktur. Karena database ini dapat menyimpan data dalam bentuk objek yang bisa dia
+kan sebagai entitas sendiri, maka database berbasis dokumen dapat memberikan kemudahan
+dalam pencarian data dan manipulasi data. Tujuan lainnya adalah untuk meningkatkan
+efisiensi pada proses pembacaan data dan meningkatkan keamanan data.
+
+NoSQL = Not Only NoSQL
+flexible scema
+denormalisasi
+non-relational database
+unsructured, semi-structured, structured data
+
+Tipe NoSQL Database
+-key-value Store
+    -redis
+-document based
+    -MongoDB, CouchDB
+-Column-oriented Database
+    -HBase, Cassandra
+-Graph Database
+    Neo4J
+
+
+Terminologi pada SQL vs NoSQL
+-SQL (Structured Query Language)
+-Relational Database Management System (RDMS)
+-ACID (Atomicity Consistency Isolation Durability)
+-Schema
+-Table
+-Row
+-Column
+-Primary Key
+-Foreign Key
+-Index
+-View
+-Stored Procedure
+-Trigger
+-Function
+-Procedural language
+-Set operations
+-Subquery
+-Join operation
+-Aggregate function
+-Window function
+-Common table expression (CTE)
+-Temporary Table
+-Savepoint
+-Transaction
+-Lock escalation
+-Partitioning
+-Replication
+-Sharding
+-Distributed transaction
+-Consistent hashing
+-CAP theorem
+-Bounded Staleness
+-Eventual consistency
+-Strong consistency
+-Weak consistency
+-------------------
+-NoSQL
+-Non-relational database management system (NRDMS)
+-Not using a fixed schema
+-Scalable horizontal scalability
+-Fast write and read performance
+-Supports various data models
+-Data model flexibility
+-Lack of ACID transactions
+-High availability
+-Multiple data centers
+-Geospatial indexing
+-Full text search capabilities
+-Incremental backup/restore
+-Real time analytics
+-Stream processing
+-Machine learning algorithms
+-Big Data
+-Hadoop ecosystem
+-Spark ecosystem
+-MapReduce
+-Pig
+-Hive
+-Impala
+-Kafka
+-Zookeeper
+-Flume
+-Storm
+-Sqoop
+-Oozie
+-Tez
+-YARN
+-Technology stack
+-Apache Hadoop
+-Apache Spark
+-Apache Pig
+-Apache HBase
+-Apache Impala
+-Apache Kudu
+-Apache Cassandra
+-Apache Zookeeper
+-Apache Flume
+
+pada SQL:
+kumpulan data = table
+satu baris data = record
+kolom data = field/Column
+
+pada NoSQL:
+kuumpulan data = collection
+satu baris data = document
+field/column = field
+
+BSON = Binarry Json
+
+
